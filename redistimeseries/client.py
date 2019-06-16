@@ -27,7 +27,14 @@ def list_to_dict(aList):
                 for i in range(len(aList))}
 
 def parse_range(response):
-    return [tuple((l[0], l[1].decode())) for l in response]
+    tuple_list = list()
+    for l in response:
+        if type(l[1]) == int:
+            temp = l[1]
+        else:
+            temp = l[1].decode()
+        tuple_list.append(tuple((l[0], temp)))
+    return tuple_list
 
 def parse_m_range(response):
     res = []
